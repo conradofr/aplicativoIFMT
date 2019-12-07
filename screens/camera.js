@@ -243,12 +243,13 @@ export default class App extends React.Component {
         <View style={styles.container}>
 
         <KeyboardAvoidingView behavior="padding" style={styles.keyboard}>
-        <ScrollView keyboardShouldPersistTaps="handled" >
-          <Image source={{uri:this.state.local}} style={styles.Foto}/>
-          <TextInput placeholder="Insira uma descrição para seu POST!" placeholderTextColor= 'gray' style={styles.InputDescricaoFoto} />
-
-
-
+          <ScrollView keyboardShouldPersistTaps="handled" style={{backgroundColor: 'blue'}} >
+            <View style={styles.Foto}>
+               <Image source={{uri:this.state.local}} />
+            </View>
+            <View style={styles.InputDescricaoFoto}>
+              <TextInput placeholder="Insira uma descrição para seu POST!" placeholderTextColor= 'gray'  />
+            </View>
           </ScrollView>
           <View style={styles.ButtonPostCamera}>
             <TouchableOpacity
@@ -292,21 +293,22 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
 
   keyboard: {
-    flex: 0.9,
-    justifyContent: 'flex-end',
+    flex: 1,
+    justifyContent: 'space-evenly',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor:'yellow'
+    //backgroundColor:'yellow'
 
   },
   InputDescricaoFoto: {
+    flex: 0.1,
     borderColor: "gray",
     borderRadius: 4,
     borderWidth: 1.5,
     marginTop: 7,
-    //backgroundColor: '#E0FFFF', 
-    height: 40,
-    width: '80%',
+    backgroundColor: '#E0FFFF', 
+    //height: 40,
+    width: '120%',
     textAlign: 'center'
   },
   ButtonPostCamera: {
@@ -327,9 +329,11 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     flexDirection: 'row',
     justifyContent: 'center',
+    backgroundColor: 'red',
     //borderBottomWidth: 0.75,
     //borderBottomColor: '#4F4F4F',
-    width: '94%', height: '100%'
+    width: '94%', 
+    height: '50%'
   },
   container: {
     flex: 1,
