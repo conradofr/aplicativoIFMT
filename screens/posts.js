@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Share, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Share, Image, Button, ScrollView } from 'react-native';
 //import { Icon } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Constants from "expo-constants";
@@ -116,14 +116,14 @@ export default class Posts extends Component{
           </TouchableOpacity>
         </View>
 
-
+      <ScrollView>
         {/* view dos posts*/}
         {POSTS.map(({ id, user, endFoto, descricao, data, like }) => (
         //console.log('linha 144 - endereco da foto: '+ endFoto),
         <View style={ styles.containerPostsFoto }>
           {/* foto*/}
           <View style={ styles.containerFoto } >
-            <Image source={{uri: endFoto}} style={{flex: .96, height: 350}} />
+            <Image source={{uri: endFoto}} style={{flex: .96, height: 350, borderRadius: 6,}} />
           </View>
           {/* descricao detalhes da foto*/}
           <View style={ styles.containerDetalhe } >
@@ -170,7 +170,7 @@ export default class Posts extends Component{
         </View>
 
       ))}
-      
+      </ScrollView>
       </View>
     )};
   }
@@ -188,6 +188,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingLeft: 13,
     paddingTop: 5,
+    marginTop:10,
     fontSize: 15,
   },
   autorData: {
@@ -198,6 +199,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column-reverse',
     fontSize: 13,
     color: 'dodgerblue',
+    marginBottom: 8
   },
   social: {
     flex: 0.5,
@@ -207,28 +209,35 @@ const styles = StyleSheet.create({
   },
   descricaoDetalhe: {
     flex: 0.50,
+    width: 600,
     backgroundColor: 'ghostwhite', //PowderBlude
     alignItems: 'stretch',
     flexDirection: 'column',
     justifyContent: 'center',
-    borderBottomWidth: 0.75,
-    borderBottomColor: '#4F4F4F',
+    //borderBottomWidth: 0.75,
+    //borderBottomColor: '#4F4F4F',
   },
   containerDetalhe: {
-    flex: 0.62,
+    flex: 3,
+   
     //backgroundColor: 'yellow', //PowderBlude
     alignItems: 'stretch',
     flexDirection: 'column',
     justifyContent: 'center',
   },
   containerFoto: {
-    flex: 0.38, //
+    flex: 2,
     //alignItems: 'center',
     //justifyContent: 'center',
     backgroundColor: 'ghostwhite',
-    marginLeft: 5,
+    marginLeft: 0,
     //borderBottomWidth: 0.75,
     //borderBottomColor: '#4F4F4F', //grey31
+    height: 150,
+    width: 150,
+    paddingLeft: 5,
+    paddingTop: 5,
+    //padding: 8
   },
   
   containerButtonCamera: {
@@ -247,7 +256,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     borderBottomWidth: 0.75,
-    borderBottomColor: '#4F4F4F',
+    borderBottomColor: 'darkgray',
   },
   container: {
     flex: 1,

@@ -33,7 +33,7 @@ export default class App extends React.Component {
     local: null,
     user: 'Marcio',
     endFoto: null,
-    descricao: 'Minha foto ',
+    descricao: null,
     data: '05/12/2019',
     like: 26,
     POSTS: null,
@@ -242,15 +242,15 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
 
-        <KeyboardAvoidingView behavior="padding" style={styles.keyboard}>
-          <ScrollView keyboardShouldPersistTaps="handled" style={{backgroundColor: 'blue'}} >
-            <View style={styles.Foto}>
-               <Image source={{uri:this.state.local}} />
-            </View>
-            <View style={styles.InputDescricaoFoto}>
-              <TextInput placeholder="Insira uma descrição para seu POST!" placeholderTextColor= 'gray'  />
-            </View>
-          </ScrollView>
+          <Image source={{uri:this.state.local}} style={styles.Foto}/>
+          <TextInput 
+            placeholder="Insira uma descrição para seu POST!" 
+            placeholderTextColor= 'gray' 
+            style={styles.InputDescricaoFoto}
+            onChangeText={descricao => this.setState({ descricao })}
+            value={this.state.descricao}
+          />
+
           <View style={styles.ButtonPostCamera}>
             <TouchableOpacity
               style={styles.button}
@@ -283,7 +283,6 @@ export default class App extends React.Component {
                 <Text style={{fontSize:11, marginBottom: 0, paddingBottom:3}}>Postar</Text>
                 </TouchableOpacity>
             </View>
-          </KeyboardAvoidingView>
         </View>
       );
 
@@ -293,22 +292,21 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
 
   keyboard: {
-    flex: 1,
-    justifyContent: 'space-evenly',
+    flex: 0.9,
+    justifyContent: 'flex-end',
     flexDirection: 'column',
     alignItems: 'center',
-    //backgroundColor:'yellow'
+    backgroundColor:'yellow'
 
   },
   InputDescricaoFoto: {
-    flex: 0.1,
     borderColor: "gray",
     borderRadius: 4,
     borderWidth: 1.5,
     marginTop: 7,
-    backgroundColor: '#E0FFFF', 
-    //height: 40,
-    width: '120%',
+    //backgroundColor: '#E0FFFF', 
+    height: 40,
+    width: '80%',
     textAlign: 'center'
   },
   ButtonPostCamera: {
@@ -329,11 +327,9 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: 'red',
     //borderBottomWidth: 0.75,
     //borderBottomColor: '#4F4F4F',
-    width: '94%', 
-    height: '50%'
+    width: '94%', height: '100%'
   },
   container: {
     flex: 1,
