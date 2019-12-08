@@ -22,6 +22,7 @@ import { Camera } from 'expo-camera';
 import * as FileSystem from 'expo-file-system';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as SQLite from 'expo-sqlite';
+import moment from 'moment';
 
 const db = SQLite.openDatabase("db.db");
 
@@ -34,7 +35,7 @@ export default class App extends React.Component {
     user: 'Marcio',
     endFoto: null,
     descricao: null,
-    data: '05/12/2019',
+    data: null,
     like: 26,
     POSTS: null,
     isLoading: true,
@@ -58,7 +59,7 @@ export default class App extends React.Component {
   criarTabela(){
     db.transaction(tx => {
       tx.executeSql(
-        "create table if not exists posts (id integer primary key not null, user text, endFoto text, descricao text, data text, like integer);"
+        "create table if not exists posts (id integer primary key not null, user text, endFoto text, descricao text, data timestamp, like integer);"
       );
     });
     console.log("OK");
@@ -84,7 +85,8 @@ export default class App extends React.Component {
     );
     this.setState({
       local: null,
-      endFoto: null
+      endFoto: null,
+      descricao: null
     })
   }
 
@@ -135,7 +137,18 @@ export default class App extends React.Component {
   }
 
   takePicture = () => {
-    //console.log(this.camera);
+    console.log('momento');
+    let momento1 =  new Date();
+    console.log(momento1);
+    
+    let momento =  Date.now();
+    console.log(momento);
+    this.setState({
+      //função para gerar o tempo decorrido da postagem
+      data: momento     
+    })
+    
+    console.log('linha 151 - '+this.state.data);
     if (this.camera) {
       this.camera.takePictureAsync({ onPictureSaved: this.onPictureSaved });
     }
@@ -151,6 +164,7 @@ export default class App extends React.Component {
     this.setState({endFoto: loc});
     console.log("Foto salva: "+ loc);
     console.log("Foto salva: "+ this.state.local);
+    console.log('linha 167 - '+this.state.data);
   }
 
 
@@ -269,6 +283,7 @@ export default class App extends React.Component {
                 //onPress={this.onPress.bind(this)}
                 onPress={ () => {
                   this.add(this.state.user, this.state.endFoto, this.state.descricao, this.state.data, this.state.like),
+                  console.log('linha 151 - '+this.state.data);
                   this.props.navigation.navigate('Posts')
                 
                   }
