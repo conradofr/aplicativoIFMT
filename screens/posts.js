@@ -65,7 +65,7 @@ export default class Posts extends Component {
     });
 
 
-    
+
   }
 
 
@@ -140,44 +140,14 @@ export default class Posts extends Component {
           </TouchableOpacity>
         </View>
 
-      <ScrollView>
-        {/* view dos posts*/}
-        {POSTS.map(({ id, user, endFoto, descricao, data, like }) => (
-        //console.log('linha 144 - endereco da foto: '+ endFoto),
-        <View style={ styles.containerPostsFoto }>
-          {/* foto*/}
-          <View style={ styles.containerFoto } >
-            <Image source={{uri: endFoto}} style={{flex: .96, height: 350, borderRadius: 6,}} />
-          </View>
-          {/* descricao detalhes da foto*/}
-          <View style={ styles.containerDetalhe } >
-            
-              {/* dados da foto*/}
-            <View style={ styles.descricaoDetalhe } >
-              <Text style={ styles.titulo }>{descricao}</Text>
-              {console.log(data)}
-
-              
-
-              <Text style={ styles.autorData }>{moment(data.toString(), 'x').fromNow()} @ {user}</Text>
-
-
-              {console.log(moment('1575772403058', 'x').fromNow())}
-            </View>
-            {/* acoes social*/}
-            <View style={ styles.social } >
-              <View style={{width: 50, height: 25, alignItems: 'center', marginBottom: 4, }} >
-                <TouchableOpacity
-                  onPress={() => this.ShareMessage()}
-                  activeOpacity={0.5}>
-                  <Icon
-                  name="share-google"
-                  type="EvilIcons"
-                  size={30}
-                  iconStyle={{ padding: 0 }}
-                  color="#4F4F4F"
-                  />
-                </TouchableOpacity>
+        <ScrollView>
+          {/* view dos posts*/}
+          {POSTS.map(({ id, user, endFoto, descricao, data, like }) => (
+            //console.log('linha 144 - endereco da foto: '+ endFoto),
+            <View style={styles.containerPostsFoto}>
+              {/* foto*/}
+              <View style={styles.containerFoto} >
+                <Image source={{ uri: endFoto }} style={{ flex: .96, height: 350, borderRadius: 6, }} />
               </View>
               {/* descricao detalhes da foto*/}
               <View style={styles.containerDetalhe} >
@@ -185,7 +155,14 @@ export default class Posts extends Component {
                 {/* dados da foto*/}
                 <View style={styles.descricaoDetalhe} >
                   <Text style={styles.titulo}>{descricao}</Text>
-                  <Text style={styles.autorData}>{data} @ {user}</Text>
+                  {console.log(data)}
+
+
+
+                  <Text style={styles.autorData}>{moment(data.toString(), 'x').fromNow()} @ {user}</Text>
+
+
+                  {console.log(moment('1575772403058', 'x').fromNow())}
                 </View>
                 {/* acoes social*/}
                 <View style={styles.social} >
