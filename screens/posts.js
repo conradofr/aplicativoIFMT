@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, TouchableOpacity, Share, Image, Button, ScrollV
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Constants from "expo-constants";
 import * as SQLite from 'expo-sqlite';
+import moment from 'moment';
+
 
 const db = SQLite.openDatabase("db.db");
 
@@ -14,6 +16,7 @@ export default class Posts extends Component{
       inputValue: '',
       POSTS: null,
       isLoading: true,
+      dataPost: null,
     };
   }
 
@@ -60,6 +63,8 @@ export default class Posts extends Component{
         );
       
     });
+
+
     
   }
 
@@ -131,7 +136,14 @@ export default class Posts extends Component{
               {/* dados da foto*/}
             <View style={ styles.descricaoDetalhe } >
               <Text style={ styles.titulo }>{descricao}</Text>
-              <Text style={ styles.autorData }>{data} @ {user}</Text>
+              {console.log(data)}
+
+              
+
+              <Text style={ styles.autorData }>{moment(data.toString(), 'x').fromNow()} @ {user}</Text>
+
+
+              {console.log(moment('1575772403058', 'x').fromNow())}
             </View>
             {/* acoes social*/}
             <View style={ styles.social } >
