@@ -15,7 +15,7 @@ export default class login extends Component {
         super(props);
         this.state = { login: '' };
         this.state = { senha: '' };
-        this.state = { USERS[]: null };
+        this.state = { USERS: null };
     }
 
     componentDidMount() {
