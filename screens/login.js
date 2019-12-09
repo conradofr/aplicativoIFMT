@@ -67,6 +67,7 @@ export default class login extends Component {
                         </View>
 
                         <TextInput
+
                             style={styles.Input}
                             placeholder="Login"
                             onChangeText={(login) => this.setState({ login })}
@@ -75,6 +76,7 @@ export default class login extends Component {
                         />
 
                         <TextInput
+                            secureTextEntry={true}
                             style={styles.Input}
                             placeholder="Senha"
                             onChangeText={(senha) => this.setState({ senha })}
