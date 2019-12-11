@@ -52,19 +52,20 @@ export default class login extends Component {
         } else {
             this.loadData();
             this.autenticar(loginP, senhaP);
-            this.props.navigation.navigate('Camera', {user: this.userAutenticado})} 
-        
+            this.props.navigation.navigate('Camera', { user: this.userAutenticado })
+        }
+
     }
 
     autenticar(loginA, senhaA) {
-        const { USERS } = this.state;    
+        const { USERS } = this.state;
         USERS.map(({ id, login, email, senha }) => {
-                if (login === loginA && senha === senhaA) {
-                    this.userAutenticado = login;
-                    return;
-                }
+            if (login === loginA && senha === senhaA) {
+                this.userAutenticado = login;
+                return;
             }
-            );
+        }
+        );
     }
 
     render() {

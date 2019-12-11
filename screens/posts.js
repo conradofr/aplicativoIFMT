@@ -14,7 +14,7 @@ export default class Posts extends Component {
     super();
     this.state = {
       inputValue: '',
-      POSTS: null,
+      POSTS: [],
       isLoading: true,
       dataPost: null,
       user: null,
@@ -101,12 +101,12 @@ export default class Posts extends Component {
 
     //const { done: doneHeading } = this.props;
     const { POSTS } = this.state;
-    console.log("RENDER" + POSTS);
+    // console.log("RENDER" + POSTS);
     // //const heading = doneHeading ? "Completed" : "Todo";
 
-    if ( POSTS === null || POSTS.length === 0 ) {
-      return false;
-    }
+    // if (POSTS === null || POSTS.length === 0) {
+    //   return false;
+    // }
     // if (POSTS === null || POSTS.length == 0) {
     //   return (
 
@@ -130,6 +130,31 @@ export default class Posts extends Component {
     //     </View>
     //   )
     // }
+
+
+    if (POSTS.length === 0) {
+      return (
+        <View style={styles.container}>
+
+          <View style={styles.containerButtonCamera}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Camera')}>
+              <Icon
+                name="camera"
+                type="EvilIcons"
+                size={50}
+                iconStyle={{ padding: 0 }}
+                color="#4F4F4F" />
+            </TouchableOpacity>
+          </View>
+
+          <View>
+            <Text> "Não há dados para exibir" </Text>
+          </View>
+        </View>
+      )
+    } 
+
     return (
       // View principal
       <View style={styles.container}>
