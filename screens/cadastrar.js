@@ -39,7 +39,7 @@ export default class cadastrar extends React.Component {
     criarTabela() {
         db.transaction(tx => {
             tx.executeSql(
-                "create table if not exists user (id integer primary key not null, login text, email text, senha text);"
+                "create table if not exists users (id integer primary key not null, login text, email text, senha text);"
             );
         });
         console.log("OK");
@@ -64,7 +64,7 @@ export default class cadastrar extends React.Component {
             db.transaction(tx => {
                 console.log('SELECT')
                 tx.executeSql(                   
-                    'select * from user where email=' + emailP + ' or login=' + loginP + ' LIMIT 1;',
+                    'select * from users where email=' + emailP + ' or login=' + loginP + ' LIMIT 1;',
                     [],              //Argument to pass for the prepared statement
                     (_, { rows: { _array } }) => this.setState({ users: _array }) //Callback function to handle the result
 
@@ -92,10 +92,11 @@ export default class cadastrar extends React.Component {
                 console.log(loginP + " " + emailP + " " + " Senha " + senhaP)
                 db.transaction(
                     tx => {
-                        tx.executeSql("insert into user (login, email, senha) values (?, ?, ?)", [loginP, emailP, senhaP]);
+                        tx.executeSql("insert into users (login, email, senha) values (?, ?, ?)", [loginP, emailP, senhaP],);
 
                     }
                 );
+
                 alert('Usuário cadastrado com sucesso!')
                 this.props.navigation.navigate('Login')
             }

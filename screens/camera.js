@@ -36,9 +36,10 @@ export default class App extends React.Component {
     endFoto: null,
     descricao: null,
     data: null,
-    like: 26,
+    like:0,
     POSTS: null,
     isLoading: true,
+    
   };
 
   constructor(props) {
@@ -46,6 +47,7 @@ export default class App extends React.Component {
   }
   componentWillMount() {
     //this.onPress(); // solicitar ativar camera
+    this.setState({user: this.props.navigation.getParam('user')});
   }
 
   componentDidMount() {
@@ -72,7 +74,7 @@ export default class App extends React.Component {
       {
         return false;
       }
-    console.log(user);
+    console.log("USUARIO: " + user);
     db.transaction(
       tx => {
         tx.executeSql("insert into posts (user, endFoto, descricao, data, like) values (?, ?, ?, ?, ?)", [user, endFoto, descricao, data, like]);
@@ -88,6 +90,7 @@ export default class App extends React.Component {
       endFoto: null,
       descricao: null
     })
+    
   }
 
   onPress() {
@@ -283,9 +286,8 @@ export default class App extends React.Component {
                 //onPress={this.onPress.bind(this)}
                 onPress={ () => {
                   this.add(this.state.user, this.state.endFoto, this.state.descricao, this.state.data, this.state.like),
-                  console.log('linha 151 - '+this.state.data);
+                  console.log('linha 151 - '+this.state.data);                 
                   this.props.navigation.navigate('Posts')
-                
                   }
                 }>
                 <Icon

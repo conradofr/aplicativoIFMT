@@ -16,6 +16,7 @@ export default class login extends Component {
         this.state = { login: '' };
         this.state = { senha: '' };
         this.state = { USERS: null };
+        this.state = { userAutenticado: null }
     }
 
     componentDidMount() {
@@ -39,7 +40,7 @@ export default class login extends Component {
 
     acessar(loginP, senhaP) {
         let verificacao = '';
-                if (!loginP) {
+        if (!loginP) {
             verificacao += 'Informe um login!\n'
         }
         if (!senhaP) {
@@ -50,8 +51,20 @@ export default class login extends Component {
             alert(verificacao)
         } else {
             this.loadData();
-            
-        }
+            this.autenticar(loginP, senhaP);
+            this.props.navigation.navigate('Camera', {user: this.userAutenticado})} 
+        
+    }
+
+    autenticar(loginA, senhaA) {
+        const { USERS } = this.state;    
+        USERS.map(({ id, login, email, senha }) => {
+                if (login === loginA && senha === senhaA) {
+                    this.userAutenticado = login;
+                    return;
+                }
+            }
+            );
     }
 
     render() {

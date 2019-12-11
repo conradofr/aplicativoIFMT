@@ -17,6 +17,7 @@ export default class Posts extends Component {
       POSTS: null,
       isLoading: true,
       dataPost: null,
+      user: null,
     };
   }
 
@@ -29,7 +30,7 @@ export default class Posts extends Component {
     //this.setState({endFoto: this.props.navigation.getParam('local')});
 
 
-    //this.loadData();
+    this.loadData();
     //console.log('param ' + this.props.navigation.getParam('pessoaId'));
 
 
@@ -100,30 +101,35 @@ export default class Posts extends Component {
 
     //const { done: doneHeading } = this.props;
     const { POSTS } = this.state;
-    //const heading = doneHeading ? "Completed" : "Todo";
-    if (POSTS === null || POSTS.length == 0) {
-      return (
+    console.log("RENDER" + POSTS);
+    // //const heading = doneHeading ? "Completed" : "Todo";
 
-        <View style={styles.container}>
-
-          <View style={styles.containerButtonCamera}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Camera')}>
-              <Icon
-                name="camera"
-                type="EvilIcons"
-                size={50}
-                iconStyle={{ padding: 0 }}
-                color="#4F4F4F" />
-            </TouchableOpacity>
-          </View>
-
-          <View>
-            <Text> "Não há dados para exibir" </Text>
-          </View>
-        </View>
-      )
+    if ( POSTS === null || POSTS.length === 0 ) {
+      return false;
     }
+    // if (POSTS === null || POSTS.length == 0) {
+    //   return (
+
+    //     <View style={styles.container}>
+
+    //       <View style={styles.containerButtonCamera}>
+    //         <TouchableOpacity
+    //           onPress={() => this.props.navigation.navigate('Camera')}>
+    //           <Icon
+    //             name="camera"
+    //             type="EvilIcons"
+    //             size={50}
+    //             iconStyle={{ padding: 0 }}
+    //             color="#4F4F4F" />
+    //         </TouchableOpacity>
+    //       </View>
+
+    //       <View>
+    //         <Text> "Não há dados para exibir" </Text>
+    //       </View>
+    //     </View>
+    //   )
+    // }
     return (
       // View principal
       <View style={styles.container}>
